@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fortune-teller-api/config"
 	"fortune-teller-api/models"
 	"log"
 	"math/rand"
@@ -31,9 +32,9 @@ func LoadFortunesFromJSON(db *gorm.DB) {
 	db.Create(&fortunes)
 	log.Println("Seeded fortunes from JSON successfully.")
 }
-func GetRandomFortune(c, *gin.Context) {
+func GetRandomFortune(c *gin.Context) {
 	var fortunes []models.Fortune
-	result := database.DB.Find(&fortunes)
+	result := config.DB.Find(&fortunes)
 	if result.Error != nil || len(fortunes) == 0 {
 		c.JSON(http.StatusNotFound, gin.H{"error": "No fortunes found"})
 		return
