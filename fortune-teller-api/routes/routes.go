@@ -9,7 +9,7 @@ import (
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
 
-	router.GET("/fortunes", handlers.GetRandomFortune)
+	router.GET("/fortune", handlers.GetRandomFortune)
 
 	return router
 }
